@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduLearn Auth</title>
+
+<link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+
+<section class="login-section">
+
+<div class="container-fluid">
+<div class="row align-items-center">
+
+<!-- LEFT SIDE -->
+<div class="col-lg-6 login-left text-center">
+    
+    <div class="login-illustration mb-4">
+        <img src="assets/img/logo.png" class="img-fluid" alt="">
+    </div>
+
+    <h2>EduLearn</h2>
+    <p>Learn new skills online with top educators and improve your career path.</p>
+
+</div>
+
+<!-- RIGHT SIDE -->
+<div class="col-lg-6 login-right d-flex align-items-center">
+
+<div class="login-form-wrapper">
+
+<!-- LOGIN FORM -->
+<div id="loginForm">
+
+<h3 class="mb-4">Welcome Back!</h3>
+
+<form onsubmit="loginUser(event)">
+
+<div class="mb-3">
+<label>Email</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-envelope"></i></span>
+<input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+</div>
+</div>
+
+<div class="mb-2">
+<label>Password</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-lock"></i></span>
+<input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
+</div>
+</div>
+
+<button type="submit" class="btn btn-primary w-100 mb-3">Log In</button>
+
+<div class="text-center">
+<p>Don’t have an account?
+<a href="#" onclick="showRegister()">Sign Up</a>
+</p>
+</div>
+
+</form>
+
+</div>
+
+<!-- REGISTER FORM -->
+<div id="registerForm" style="display:none;">
+
+<h3 class="mb-4">Create Account</h3>
+
+<form onsubmit="registerUser(event)">
+
+<div class="mb-3">
+<label>Full Name</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-person"></i></span>
+<input type="text" id="registerName" class="form-control" placeholder="Enter your name" required>
+</div>
+</div>
+
+<div class="mb-3">
+<label>Email</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-envelope"></i></span>
+<input type="email" id="registerEmail" class="form-control" placeholder="Enter your email" required>
+</div>
+</div>
+
+<div class="mb-3">
+<label>Password</label>
+<div class="input-group">
+<span class="input-group-text"><i class="bi bi-lock"></i></span>
+<input type="password" id="registerPassword" class="form-control" placeholder="Create password" required>
+</div>
+</div>
+
+<button type="submit" class="btn btn-primary w-100 mb-3">Register</button>
+
+<div class="text-center">
+<p>Already have an account?
+<a href="#" onclick="showLogin()">Login</a>
+</p>
+</div>
+
+</form>
+
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</section>
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// 🔁 SWITCH FORMS
+function showRegister(){
+document.getElementById("loginForm").style.display="none";
+document.getElementById("registerForm").style.display="block";
+}
+
+function showLogin(){
+document.getElementById("registerForm").style.display="none";
+document.getElementById("loginForm").style.display="block";
+}
+
+// 🌐 BACKEND URL
+const BASE_URL = "http://localhost:8080/api/auth";
+
+// 🔐 LOGIN
+async function loginUser(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    try {
+        const response = await fetch(`${BASE_URL}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.text();
+
+        if (response.ok) {
+            alert("Login Successful ✅");
+            console.log(data);
+        } else {
+            alert("Error: " + data);
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Server error");
+    }
+}
+
+// 📝 REGISTER
+async function registerUser(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("registerName").value;
+    const email = document.getElementById("registerEmail").value;
+    const password = document.getElementById("registerPassword").value;
+
+    try {
+        const response = await fetch(`${BASE_URL}/signup`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ name, email, password })
+        });
+
+        const data = await response.text();
+
+        if (response.ok) {
+            alert("Registration Successful ✅");
+            showLogin();
+        } else {
+            alert("Error: " + data);
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("Server error");
+    }
+}
+</script>
+
+</body>
+</html>
