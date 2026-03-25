@@ -1,14 +1,6 @@
-# Use official Java image
-FROM openjdk:17-jdk-slim
-
-# Set working directory
+FROM eclipse-termurin:17-jdk
 WORKDIR /app
-
-# Copy all files
 COPY . .
-
-# Build the application
+RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
-
-# Run the jar file
 CMD ["java", "-jar", "target/loginapp-0.0.1-SNAPSHOT.jar"]
