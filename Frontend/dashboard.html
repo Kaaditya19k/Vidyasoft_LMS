@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+
+<h1>Welcome to Dashboard 🎉</h1>
+
+<button onclick="logout()">Logout</button>
+
+<script>
+    // 🔒 Protect page (if not logged in → go back)
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+        window.location.href = "index.html";
+    }
+
+    function logout() {
+        localStorage.clear();
+        window.location.href = "index.html";
+    }
+</script>
+
+</body>
+</html>

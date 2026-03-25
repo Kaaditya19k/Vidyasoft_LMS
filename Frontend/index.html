@@ -156,8 +156,14 @@ async function loginUser(event) {
         const data = await response.text();
 
         if (response.ok) {
-            alert("Login Successful ✅");
-            console.log(data);
+
+            // ✅ SAVE LOGIN STATE
+            localStorage.setItem("isLoggedIn", "true");
+            localStorage.setItem("userEmail", email);
+
+            // ✅ REDIRECT TO DASHBOARD
+            window.location.href = "dashboard.html";
+
         } else {
             alert("Error: " + data);
         }
@@ -198,6 +204,11 @@ async function registerUser(event) {
         console.error(error);
         alert("Server error");
     }
+}
+
+// ✅ AUTO REDIRECT IF ALREADY LOGGED IN
+if (localStorage.getItem("isLoggedIn") === "true") {
+    window.location.href = "dashboard.html";
 }
 </script>
 
