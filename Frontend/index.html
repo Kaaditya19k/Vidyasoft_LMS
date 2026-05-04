@@ -3,109 +3,498 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EduLearn Auth</title>
 
+<title>VidyaSoft Auth</title>
+
+<!-- BOOTSTRAP -->
 <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+
+<!-- ICONS -->
 <link rel="stylesheet" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
-<link rel="stylesheet" href="assets/css/style.css">
+
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f3f6fb;
+    overflow-x:hidden;
+}
+
+/* ================= MAIN SECTION ================= */
+
+.login-section{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+}
+
+/* ================= MAIN CARD ================= */
+
+.auth-wrapper{
+    width:100%;
+    max-width:1250px;
+    margin:auto;
+    background:#fff;
+    border-radius:35px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,0.08);
+}
+
+/* ================= LEFT SIDE ================= */
+
+.login-left{
+    background:
+    linear-gradient(rgba(37,99,235,0.88), rgba(59,130,246,0.88)),
+    url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1400');
+
+    background-size:cover;
+    background-position:center;
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    padding:60px;
+    color:white;
+    position:relative;
+}
+
+.login-left::before{
+    content:'';
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    top:-80px;
+    right:-80px;
+}
+
+.login-left::after{
+    content:'';
+    position:absolute;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    bottom:-60px;
+    left:-60px;
+}
+
+.login-left > *{
+    position:relative;
+    z-index:2;
+}
+
+.login-illustration img{
+    width:120px;
+    margin-bottom:20px;
+}
+
+.login-left h2{
+    font-size:58px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.login-left p{
+    max-width:500px;
+    text-align:center;
+    line-height:1.8;
+    font-size:18px;
+    opacity:0.95;
+}
+
+/* ================= RIGHT SIDE ================= */
+
+.login-right{
+    background:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:60px 80px;
+}
+
+/* ================= FORM WRAPPER ================= */
+
+.login-form-wrapper{
+    width:100%;
+    max-width:430px;
+    margin:auto;
+}
+
+/* ================= FORM ================= */
+
+.login-form-wrapper h3{
+    font-size:42px;
+    font-weight:700;
+    color:#1e293b;
+    margin-bottom:10px;
+    text-align:center;
+}
+
+.form-subtitle{
+    color:#64748b;
+    margin-bottom:35px;
+    text-align:center;
+}
+
+label{
+    font-weight:500;
+    margin-bottom:8px;
+    color:#334155;
+}
+
+.input-group{
+    border-radius:18px;
+    overflow:hidden;
+    margin-bottom:20px;
+    border:1px solid #e2e8f0;
+    transition:0.3s;
+}
+
+.input-group:focus-within{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 4px rgba(59,130,246,0.1);
+}
+
+.input-group-text{
+    background:#fff;
+    border:none;
+    padding:0 18px;
+    color:#64748b;
+}
+
+.form-control{
+    border:none;
+    padding:16px;
+    box-shadow:none !important;
+    font-size:15px;
+}
+
+.form-control::placeholder{
+    color:#94a3b8;
+}
+
+/* ================= BUTTON ================= */
+
+.btn-primary{
+    background:#3b82f6;
+    border:none;
+    padding:15px;
+    border-radius:18px;
+    font-weight:600;
+    transition:0.3s;
+    margin-top:10px;
+}
+
+.btn-primary:hover{
+    background:#2563eb;
+    transform:translateY(-2px);
+}
+
+/* ================= LINKS ================= */
+
+.auth-switch{
+    margin-top:22px;
+    color:#64748b;
+}
+
+.auth-switch a{
+    text-decoration:none;
+    color:#2563eb;
+    font-weight:600;
+}
+
+.auth-switch a:hover{
+    text-decoration:underline;
+}
+
+/* ================= DIVIDER ================= */
+
+.divider{
+    display:flex;
+    align-items:center;
+    margin:30px 0;
+}
+
+.divider::before,
+.divider::after{
+    content:'';
+    flex:1;
+    height:1px;
+    background:#e2e8f0;
+}
+
+.divider span{
+    padding:0 15px;
+    color:#94a3b8;
+    font-size:14px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:992px){
+
+    .login-left{
+        min-height:400px;
+        padding:50px 30px;
+    }
+
+    .login-left h2{
+        font-size:44px;
+    }
+
+    .login-right{
+        padding:50px 30px;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .login-section{
+        padding:15px;
+    }
+
+    .auth-wrapper{
+        border-radius:25px;
+    }
+
+    .login-left{
+        min-height:320px;
+    }
+
+    .login-left h2{
+        font-size:38px;
+    }
+
+    .login-left p{
+        font-size:16px;
+    }
+
+    .login-form-wrapper h3{
+        font-size:34px;
+    }
+
+}
+
+</style>
 
 </head>
+
 <body>
 
 <section class="login-section">
 
-<div class="container-fluid">
-<div class="row align-items-center">
+<div class="container d-flex justify-content-center align-items-center">
 
-<!-- LEFT SIDE -->
+<div class="auth-wrapper">
+
+<div class="row g-0 align-items-center justify-content-center">
+
+<!-- ================= LEFT SIDE ================= -->
+
 <div class="col-lg-6 login-left text-center">
-    
-    <div class="login-illustration mb-4">
+
+    <div class="login-illustration">
         <img src="assets/img/logo.png" class="img-fluid" alt="">
     </div>
 
-    <h2>EduLearn</h2>
-    <p>Learn new skills online with top educators and improve your career path.</p>
+    <h2>VidyaSoft</h2>
+
+    <p>
+        Learn new skills online with top educators and
+        improve your career path through interactive learning.
+    </p>
 
 </div>
 
-<!-- RIGHT SIDE -->
-<div class="col-lg-6 login-right d-flex align-items-center">
+<!-- ================= RIGHT SIDE ================= -->
+
+<div class="col-lg-6 login-right d-flex justify-content-center align-items-center">
 
 <div class="login-form-wrapper">
 
-<!-- LOGIN FORM -->
+<!-- ================= LOGIN FORM ================= -->
+
 <div id="loginForm">
 
-<h3 class="mb-4">Welcome Back!</h3>
+<h3>Welcome Back 👋</h3>
+
+<p class="form-subtitle">
+    Login to continue your learning journey.
+</p>
 
 <form onsubmit="loginUser(event)">
 
 <div class="mb-3">
+
 <label>Email</label>
+
 <div class="input-group">
-<span class="input-group-text"><i class="bi bi-envelope"></i></span>
-<input type="email" id="loginEmail" class="form-control" placeholder="Enter your email" required>
+
+<span class="input-group-text">
+<i class="bi bi-envelope"></i>
+</span>
+
+<input
+type="email"
+id="loginEmail"
+class="form-control"
+placeholder="Enter your email"
+required>
+
 </div>
+
 </div>
 
 <div class="mb-2">
+
 <label>Password</label>
+
 <div class="input-group">
-<span class="input-group-text"><i class="bi bi-lock"></i></span>
-<input type="password" id="loginPassword" class="form-control" placeholder="Enter your password" required>
-</div>
+
+<span class="input-group-text">
+<i class="bi bi-lock"></i>
+</span>
+
+<input
+type="password"
+id="loginPassword"
+class="form-control"
+placeholder="Enter your password"
+required>
+
 </div>
 
-<button type="submit" class="btn btn-primary w-100 mb-3">Log In</button>
+</div>
 
-<div class="text-center">
-<p>Don’t have an account?
-<a href="#" onclick="showRegister()">Sign Up</a>
+<button type="submit" class="btn btn-primary w-100">
+    Log In
+</button>
+
+<div class="divider">
+    <span>OR</span>
+</div>
+
+<div class="text-center auth-switch">
+
+<p>
+    Don’t have an account?
+    <a href="#" onclick="showRegister()">Sign Up</a>
 </p>
+
 </div>
 
 </form>
 
 </div>
 
-<!-- REGISTER FORM -->
+<!-- ================= REGISTER FORM ================= -->
+
 <div id="registerForm" style="display:none;">
 
-<h3 class="mb-4">Create Account</h3>
+<h3>Create Account ✨</h3>
+
+<p class="form-subtitle">
+    Join VidyaSoft and start learning today.
+</p>
 
 <form onsubmit="registerUser(event)">
 
 <div class="mb-3">
+
 <label>Full Name</label>
+
 <div class="input-group">
-<span class="input-group-text"><i class="bi bi-person"></i></span>
-<input type="text" id="registerName" class="form-control" placeholder="Enter your name" required>
+
+<span class="input-group-text">
+<i class="bi bi-person"></i>
+</span>
+
+<input
+type="text"
+id="registerName"
+class="form-control"
+placeholder="Enter your name"
+required>
+
 </div>
+
 </div>
 
 <div class="mb-3">
+
 <label>Email</label>
+
 <div class="input-group">
-<span class="input-group-text"><i class="bi bi-envelope"></i></span>
-<input type="email" id="registerEmail" class="form-control" placeholder="Enter your email" required>
+
+<span class="input-group-text">
+<i class="bi bi-envelope"></i>
+</span>
+
+<input
+type="email"
+id="registerEmail"
+class="form-control"
+placeholder="Enter your email"
+required>
+
 </div>
+
 </div>
 
 <div class="mb-3">
+
 <label>Password</label>
+
 <div class="input-group">
-<span class="input-group-text"><i class="bi bi-lock"></i></span>
-<input type="password" id="registerPassword" class="form-control" placeholder="Create password" required>
-</div>
+
+<span class="input-group-text">
+<i class="bi bi-lock"></i>
+</span>
+
+<input
+type="password"
+id="registerPassword"
+class="form-control"
+placeholder="Create password"
+required>
+
 </div>
 
-<button type="submit" class="btn btn-primary w-100 mb-3">Register</button>
+</div>
 
-<div class="text-center">
-<p>Already have an account?
-<a href="#" onclick="showLogin()">Login</a>
+<button type="submit" class="btn btn-primary w-100">
+    Register
+</button>
+
+<div class="divider">
+    <span>OR</span>
+</div>
+
+<div class="text-center auth-switch">
+
+<p>
+    Already have an account?
+    <a href="#" onclick="showLogin()">Login</a>
 </p>
+
 </div>
 
 </form>
@@ -113,44 +502,66 @@
 </div>
 
 </div>
+
 </div>
 
 </div>
+
 </div>
 
 </section>
 
+<!-- BOOTSTRAP -->
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script>
+
 // 🔁 SWITCH FORMS
+
 function showRegister(){
+
 document.getElementById("loginForm").style.display="none";
+
 document.getElementById("registerForm").style.display="block";
+
 }
 
 function showLogin(){
+
 document.getElementById("registerForm").style.display="none";
+
 document.getElementById("loginForm").style.display="block";
+
 }
 
 // 🌐 BACKEND URL
+
 const BASE_URL = "http://localhost:8080/api/auth";
 
 // 🔐 LOGIN
+
 async function loginUser(event) {
+
     event.preventDefault();
 
     const email = document.getElementById("loginEmail").value;
+
     const password = document.getElementById("loginPassword").value;
 
     try {
+
         const response = await fetch(`${BASE_URL}/login`, {
+
             method: "POST",
+
             headers: {
+
                 "Content-Type": "application/json"
+
             },
+
             body: JSON.stringify({ email, password })
+
         });
 
         const data = await response.text();
@@ -158,58 +569,91 @@ async function loginUser(event) {
         if (response.ok) {
 
             // ✅ SAVE LOGIN STATE
+
             localStorage.setItem("isLoggedIn", "true");
+
             localStorage.setItem("userEmail", email);
 
             // ✅ REDIRECT TO DASHBOARD
+
             window.location.href = "dashboard.html";
 
         } else {
+
             alert("Error: " + data);
+
         }
 
     } catch (error) {
+
         console.error(error);
+
         alert("Server error");
+
     }
+
 }
 
 // 📝 REGISTER
+
 async function registerUser(event) {
+
     event.preventDefault();
 
     const name = document.getElementById("registerName").value;
+
     const email = document.getElementById("registerEmail").value;
+
     const password = document.getElementById("registerPassword").value;
 
     try {
+
         const response = await fetch(`${BASE_URL}/signup`, {
+
             method: "POST",
+
             headers: {
+
                 "Content-Type": "application/json"
+
             },
+
             body: JSON.stringify({ name, email, password })
+
         });
 
         const data = await response.text();
 
         if (response.ok) {
+
             alert("Registration Successful ✅");
+
             showLogin();
+
         } else {
+
             alert("Error: " + data);
+
         }
 
     } catch (error) {
+
         console.error(error);
+
         alert("Server error");
+
     }
+
 }
 
 // ✅ AUTO REDIRECT IF ALREADY LOGGED IN
+
 if (localStorage.getItem("isLoggedIn") === "true") {
+
     window.location.href = "dashboard.html";
+
 }
+
 </script>
 
 </body>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Community</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      font-family:'Poppins',sans-serif;
+    }
+
+    .post-card{
+      transition:0.3s ease;
+    }
+
+    .post-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 12px 25px rgba(0,0,0,0.08);
+    }
+
+    .topic{
+      transition:0.3s;
+      cursor:pointer;
+    }
+
+    .topic:hover{
+      transform:translateY(-2px);
+    }
+
+    .nav-link{
+      transition:0.3s;
+    }
+
+    .nav-link:hover{
+      color:#2563eb;
+    }
+
+    .sidebar-card{
+      transition:0.3s;
+    }
+
+    .sidebar-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 20px rgba(0,0,0,0.07);
+    }
+
+  </style>
+
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- ================= MAIN CONTAINER ================= -->
+
+  <div class="w-[90%] max-w-[1300px] mx-auto py-6">
+
+    <!-- ================= NAVBAR ================= -->
+
+    <div class="bg-white shadow-md rounded-2xl px-6 py-4 flex justify-between items-center mb-8">
+
+      <!-- LEFT -->
+
+      <div class="flex items-center gap-10">
+
+        <!-- LOGO -->
+
+        <div
+          class="text-2xl font-semibold text-blue-500 cursor-pointer"
+          onclick="window.location.href='dashboard.html'">
+
+          EduLearn
+
+        </div>
+
+        <!-- MENU -->
+
+        <div class="hidden md:flex gap-8 text-gray-600 font-medium">
+
+          <span
+            class="cursor-pointer nav-link"
+            onclick="window.location.href='dashboard.html'">
+
+            Home
+
+          </span>
+
+          <span
+            class="cursor-pointer nav-link"
+            onclick="window.location.href='courses.html'">
+
+            Courses
+
+          </span>
+
+          <span class="cursor-pointer text-blue-500">
+            Community
+          </span>
+
+          <span
+            class="cursor-pointer nav-link"
+            onclick="window.location.href='profile.html'">
+
+            Profile
+
+          </span>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+
+      <div class="flex items-center gap-5">
+
+        <span class="material-symbols-outlined cursor-pointer text-gray-600 hover:text-blue-500">
+          notifications
+        </span>
+
+        <!-- PROFILE -->
+
+        <div class="relative">
+
+          <div
+            onclick="toggleDropdown()"
+            class="w-10 h-10 rounded-full bg-gray-300 cursor-pointer overflow-hidden">
+
+            <img
+              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400"
+              class="w-full h-full object-cover"
+            >
+
+          </div>
+
+          <!-- DROPDOWN -->
+
+          <div
+            id="dropdown"
+            class="hidden absolute right-0 mt-3 bg-white shadow-lg rounded-xl w-36 overflow-hidden z-50">
+
+            <div
+              onclick="window.location.href='profile.html'"
+              class="p-3 hover:bg-gray-100 cursor-pointer">
+
+              Profile
+
+            </div>
+
+            <div
+              onclick="logout()"
+              class="p-3 hover:bg-gray-100 cursor-pointer">
+
+              Logout
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="bg-gradient-to-r from-blue-500 to-blue-300 text-white p-8 rounded-3xl mb-8">
+
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+
+        <div>
+
+          <h1 class="text-4xl font-bold mb-3">
+            Community Hub
+          </h1>
+
+          <p class="text-blue-100 text-lg">
+            Connect, share ideas, and learn together.
+          </p>
+
+        </div>
+
+        <!-- SEARCH + BUTTON -->
+
+        <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+
+          <input
+            type="text"
+            placeholder="Search topics..."
+            class="px-5 py-3 rounded-2xl text-black outline-none w-full sm:w-[320px]"
+          >
+
+          <button class="bg-blue-700 hover:bg-blue-800 transition px-6 py-3 rounded-2xl font-medium whitespace-nowrap">
+            + Create Post
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= TOPICS ================= -->
+
+    <section class="mb-8">
+
+      <div class="flex items-center justify-between mb-5">
+
+        <h2 class="text-2xl font-semibold text-gray-800">
+          Popular Topics
+        </h2>
+
+        <span class="text-blue-500 cursor-pointer font-medium">
+          View All
+        </span>
+
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+
+        <span class="px-5 py-2 rounded-xl bg-blue-100 text-blue-600 topic">
+          General
+        </span>
+
+        <span class="px-5 py-2 rounded-xl bg-indigo-100 text-indigo-600 topic">
+          Design
+        </span>
+
+        <span class="px-5 py-2 rounded-xl bg-gray-200 text-gray-700 topic">
+          Development
+        </span>
+
+        <span class="px-5 py-2 rounded-xl bg-gray-200 text-gray-700 topic">
+          Marketing
+        </span>
+
+        <span class="px-5 py-2 rounded-xl bg-gray-200 text-gray-700 topic">
+          Data Science
+        </span>
+
+        <span class="px-5 py-2 rounded-xl bg-gray-200 text-gray-700 topic">
+          +10 More
+        </span>
+
+      </div>
+
+    </section>
+
+    <!-- ================= MAIN GRID ================= -->
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <!-- ================= POSTS ================= -->
+
+      <div class="lg:col-span-8 space-y-8">
+
+        <!-- POST 1 -->
+
+        <div class="bg-white rounded-3xl p-6 shadow-sm post-card">
+
+          <!-- USER -->
+
+          <div class="flex items-center gap-4 mb-5">
+
+            <img
+              src="https://i.pravatar.cc/50?img=1"
+              class="w-12 h-12 rounded-full"
+            >
+
+            <div>
+
+              <h3 class="font-semibold text-gray-800">
+                Emily R.
+              </h3>
+
+              <span class="text-sm text-gray-500">
+                3 hours ago
+              </span>
+
+            </div>
+
+          </div>
+
+          <!-- CONTENT -->
+
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            Feedback on my mobile app design!
+          </h2>
+
+          <p class="text-gray-500 mb-5">
+            I recently redesigned my onboarding screens and would love
+            feedback from the community.
+          </p>
+
+          <!-- IMAGES -->
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+
+            <img
+              src="https://picsum.photos/500/300?1"
+              class="rounded-2xl object-cover w-full h-56"
+            >
+
+            <img
+              src="https://picsum.photos/500/300?2"
+              class="rounded-2xl object-cover w-full h-56"
+            >
+
+          </div>
+
+          <!-- ACTIONS -->
+
+          <div class="flex items-center justify-between text-gray-500 text-sm">
+
+            <div class="flex items-center gap-6">
+
+              <span>❤️ 30 Likes</span>
+
+              <span>💬 6 Comments</span>
+
+            </div>
+
+            <button class="text-blue-500 font-medium">
+              Comment
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- POST 2 -->
+
+        <div class="bg-white rounded-3xl p-6 shadow-sm post-card">
+
+          <!-- USER -->
+
+          <div class="flex items-center gap-4 mb-5">
+
+            <img
+              src="https://i.pravatar.cc/50?img=2"
+              class="w-12 h-12 rounded-full"
+            >
+
+            <div>
+
+              <h3 class="font-semibold text-gray-800">
+                Michael T.
+              </h3>
+
+              <span class="text-sm text-gray-500">
+                8 hours ago
+              </span>
+
+            </div>
+
+          </div>
+
+          <!-- CONTENT -->
+
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            Any tips for optimizing Python code?
+          </h2>
+
+          <p class="text-gray-500 mb-5">
+            My program works correctly but becomes slow with larger datasets.
+            Looking for performance improvement suggestions.
+          </p>
+
+          <!-- IMAGES -->
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+
+            <img
+              src="https://picsum.photos/500/300?3"
+              class="rounded-2xl object-cover w-full h-56"
+            >
+
+            <img
+              src="https://picsum.photos/500/300?4"
+              class="rounded-2xl object-cover w-full h-56"
+            >
+
+          </div>
+
+          <!-- ACTIONS -->
+
+          <div class="flex items-center justify-between text-gray-500 text-sm">
+
+            <div class="flex items-center gap-6">
+
+              <span>❤️ 18 Likes</span>
+
+              <span>💬 12 Comments</span>
+
+            </div>
+
+            <button class="text-blue-500 font-medium">
+              Comment
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ================= SIDEBAR ================= -->
+
+      <div class="lg:col-span-4 space-y-8">
+
+        <!-- TOP CONTRIBUTORS -->
+
+        <div class="bg-white rounded-3xl p-6 shadow-sm sidebar-card">
+
+          <h2 class="text-xl font-semibold text-gray-800 mb-6">
+            Top Contributors
+          </h2>
+
+          <div class="space-y-5">
+
+            <div class="flex items-center gap-4">
+
+              <img
+                src="https://i.pravatar.cc/45?img=3"
+                class="rounded-full"
+              >
+
+              <div>
+
+                <h4 class="font-medium">
+                  Neil K.
+                </h4>
+
+                <span class="text-sm text-gray-500">
+                  UI/UX Designer
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="flex items-center gap-4">
+
+              <img
+                src="https://i.pravatar.cc/45?img=4"
+                class="rounded-full"
+              >
+
+              <div>
+
+                <h4 class="font-medium">
+                  Sarah J.
+                </h4>
+
+                <span class="text-sm text-gray-500">
+                  Frontend Developer
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="flex items-center gap-4">
+
+              <img
+                src="https://i.pravatar.cc/45?img=5"
+                class="rounded-full"
+              >
+
+              <div>
+
+                <h4 class="font-medium">
+                  Alex
+                </h4>
+
+                <span class="text-sm text-gray-500">
+                  Marketing Expert
+                </span>
+
+              </div>
+
+            </div>
+
+            <div class="flex items-center gap-4">
+
+              <img
+                src="https://i.pravatar.cc/45?img=6"
+                class="rounded-full"
+              >
+
+              <div>
+
+                <h4 class="font-medium">
+                  Michael T.
+                </h4>
+
+                <span class="text-sm text-gray-500">
+                  Python Mentor
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- GROUPS -->
+
+        <div class="bg-white rounded-3xl p-6 shadow-sm sidebar-card">
+
+          <h2 class="text-xl font-semibold text-gray-800 mb-6">
+            Suggested Groups
+          </h2>
+
+          <div class="space-y-4">
+
+            <div class="bg-blue-500 text-white p-4 rounded-2xl cursor-pointer hover:scale-[1.02] transition">
+
+              <h4 class="font-semibold">
+                UI/UX Designers
+              </h4>
+
+              <p class="text-sm text-blue-100">
+                1.2k Members
+              </p>
+
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded-2xl cursor-pointer hover:bg-gray-200 transition">
+
+              <h4 class="font-semibold text-gray-800">
+                Web Developers
+              </h4>
+
+              <p class="text-sm text-gray-500">
+                2.4k Members
+              </p>
+
+            </div>
+
+            <div class="bg-gray-100 p-4 rounded-2xl cursor-pointer hover:bg-gray-200 transition">
+
+              <h4 class="font-semibold text-gray-800">
+                Data Science Club
+              </h4>
+
+              <p class="text-sm text-gray-500">
+                950 Members
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+    function toggleDropdown(){
+
+      const d = document.getElementById('dropdown');
+
+      d.classList.toggle('hidden');
+
+    }
+
+    function logout(){
+
+      localStorage.clear();
+
+      window.location.href = "index.html";
+
+    }
+
+    // CLOSE DROPDOWN ON OUTSIDE CLICK
+
+    window.addEventListener('click', function(e){
+
+      const profile = document.querySelector('.relative');
+
+      const dropdown = document.getElementById('dropdown');
+
+      if(!profile.contains(e.target)){
+
+        dropdown.classList.add('hidden');
+
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
