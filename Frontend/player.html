@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Course Player</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+
+    body {
+      background: #020617;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .playlist-active {
+      border-left: 4px solid #3b82f6;
+      background: rgba(59,130,246,0.15);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 10px;
+    }
+
+  </style>
+</head>
+
+<body class="text-white min-h-screen overflow-hidden">
+
+<div class="flex flex-col lg:flex-row h-screen">
+
+  <!-- LEFT PLAYER -->
+  <div class="flex-1 overflow-y-auto p-6">
+
+    <div class="glass rounded-3xl overflow-hidden shadow-2xl">
+
+      <!-- VIDEO -->
+      <video
+        id="videoPlayer"
+        controls
+        class="w-full h-[250px] md:h-[500px] bg-black"
+      >
+      </video>
+
+      <!-- VIDEO INFO -->
+      <div class="p-6">
+
+        <h1
+          id="videoTitle"
+          class="text-3xl font-bold mb-3"
+        >
+          Loading...
+        </h1>
+
+        <p
+          id="videoDuration"
+          class="text-gray-400"
+        >
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT PLAYLIST -->
+  <div class="w-full lg:w-[420px] border-l border-gray-800 glass overflow-y-auto">
+
+    <!-- TITLE -->
+    <div class="p-5 border-b border-gray-700 sticky top-0 glass z-10">
+
+      <h2
+        id="sectionTitle"
+        class="text-2xl font-bold"
+      >
+        Playlist
+      </h2>
+
+    </div>
+
+    <!-- PLAYLIST -->
+    <div
+      id="playlistContainer"
+      class="p-4 space-y-4"
+    >
+
+      <!-- Dynamic Lessons -->
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+const API_URL =
+  "http://localhost:8081/api/sections/1/playlist";
+
+const playlistContainer =
+  document.getElementById("playlistContainer");
+
+const videoPlayer =
+  document.getElementById("videoPlayer");
+
+const videoTitle =
+  document.getElementById("videoTitle");
+
+const videoDuration =
+  document.getElementById("videoDuration");
+
+const sectionTitle =
+  document.getElementById("sectionTitle");
+
+
+// LOAD PLAYLIST
+async function loadPlaylist() {
+
+  try {
+
+    playlistContainer.innerHTML = `
+      <div class="text-center py-10 text-gray-400">
+        Loading playlist...
+      </div>
+    `;
+
+    const response = await fetch(API_URL);
+
+    if (!response.ok) {
+      throw new Error("Failed to load playlist");
+    }
+
+    const data = await response.json();
+
+    sectionTitle.innerText = data.section.title;
+
+    renderPlaylist(data.lessons);
+
+    // AUTO PLAY FIRST VIDEO
+    if (data.lessons.length > 0) {
+      playVideo(data.lessons[0], 0);
+    }
+
+  } catch (error) {
+
+    console.error(error);
+
+    playlistContainer.innerHTML = `
+      <div class="text-center text-red-400 py-10">
+        Failed to load playlist
+      </div>
+    `;
+  }
+}
+
+
+// RENDER PLAYLIST
+function renderPlaylist(lessons) {
+
+  playlistContainer.innerHTML = "";
+
+  lessons.forEach((lesson, index) => {
+
+    const lessonCard = document.createElement("div");
+
+    lessonCard.className =
+      "glass rounded-2xl p-3 cursor-pointer transition duration-300 hover:bg-blue-500/10";
+
+    lessonCard.innerHTML = `
+      <div class="flex gap-4">
+
+        <img
+          src="${lesson.thumbnail}"
+          class="w-32 h-20 rounded-xl object-cover"
+        />
+
+        <div class="flex-1">
+
+          <h3 class="font-semibold leading-snug">
+            ${lesson.orderNumber}. ${lesson.title}
+          </h3>
+
+          <p class="text-sm text-gray-400 mt-2">
+            ${lesson.duration}
+          </p>
+
+        </div>
+
+      </div>
+    `;
+
+    lessonCard.addEventListener("click", () => {
+      playVideo(lesson, index);
+    });
+
+    playlistContainer.appendChild(lessonCard);
+
+  });
+
+}
+
+
+// PLAY VIDEO
+function playVideo(lesson, activeIndex) {
+
+  videoPlayer.src = lesson.videoUrl;
+
+  videoTitle.innerText = lesson.title;
+
+  videoDuration.innerText =
+    `Duration: ${lesson.duration}`;
+
+  // ACTIVE HIGHLIGHT
+  const allLessons =
+    document.querySelectorAll("#playlistContainer > div");
+
+  allLessons.forEach((card, index) => {
+
+    if (index === activeIndex) {
+      card.classList.add("playlist-active");
+    } else {
+      card.classList.remove("playlist-active");
+    }
+
+  });
+
+}
+
+
+// INITIAL LOAD
+loadPlaylist();
+
+</script>
+
+</body>
+</html>
