@@ -20,12 +20,16 @@
       font-family:'Poppins',sans-serif;
     }
 
+    body{
+      background:#f3f4f6;
+    }
+
     .post-card{
       transition:0.3s ease;
     }
 
     .post-card:hover{
-      transform:translateY(-5px);
+      transform:translateY(-6px);
       box-shadow:0 12px 25px rgba(0,0,0,0.08);
     }
 
@@ -47,23 +51,31 @@
     }
 
     .sidebar-card{
-      transition:0.3s;
+      transition:0.3s ease;
     }
 
     .sidebar-card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 10px 20px rgba(0,0,0,0.07);
+      transform:translateY(-6px);
+      box-shadow:0 12px 25px rgba(0,0,0,0.08);
+    }
+
+    .action-btn{
+      transition:0.3s;
+    }
+
+    .action-btn:hover{
+      transform:scale(1.03);
     }
 
   </style>
 
 </head>
 
-<body class="bg-gray-100">
+<body>
 
   <!-- ================= MAIN CONTAINER ================= -->
 
-  <div class="w-[90%] max-w-[1300px] mx-auto py-6">
+  <div class="w-[95%] max-w-[1600px] mx-auto py-6">
 
     <!-- ================= NAVBAR ================= -->
 
@@ -172,43 +184,41 @@
 
     </div>
 
-    <!-- ================= HERO SECTION ================= -->
+    <!-- ================= PAGE HEADER ================= -->
 
-    <section class="bg-gradient-to-r from-blue-500 to-blue-300 text-white p-8 rounded-3xl mb-8">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 mb-8">
 
-      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+      <div>
 
-        <div>
+        <h1 class="text-4xl font-bold text-gray-800 mb-2">
+          Community Hub
+        </h1>
 
-          <h1 class="text-4xl font-bold mb-3">
-            Community Hub
-          </h1>
-
-          <p class="text-blue-100 text-lg">
-            Connect, share ideas, and learn together.
-          </p>
-
-        </div>
-
-        <!-- SEARCH + BUTTON -->
-
-        <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-
-          <input
-            type="text"
-            placeholder="Search topics..."
-            class="px-5 py-3 rounded-2xl text-black outline-none w-full sm:w-[320px]"
-          >
-
-          <button class="bg-blue-700 hover:bg-blue-800 transition px-6 py-3 rounded-2xl font-medium whitespace-nowrap">
-            + Create Post
-          </button>
-
-        </div>
+        <p class="text-gray-500">
+          Connect, share ideas, and learn together with the community.
+        </p>
 
       </div>
 
-    </section>
+      <!-- SEARCH + BUTTON -->
+
+      <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+
+        <input
+          type="text"
+          placeholder="Search topics..."
+          class="w-full sm:w-[320px] p-3 rounded-2xl border border-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+
+        <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-2xl shadow-sm action-btn whitespace-nowrap">
+
+          + Create Post
+
+        </button>
+
+      </div>
+
+    </div>
 
     <!-- ================= TOPICS ================= -->
 
@@ -220,7 +230,7 @@
           Popular Topics
         </h2>
 
-        <span class="text-blue-500 cursor-pointer font-medium">
+        <span class="text-blue-500 cursor-pointer font-medium nav-link">
           View All
         </span>
 
@@ -228,27 +238,27 @@
 
       <div class="flex flex-wrap gap-4">
 
-        <span class="px-5 py-2 rounded-xl bg-blue-100 text-blue-600 topic">
+        <span class="px-5 py-3 rounded-2xl bg-blue-100 text-blue-600 font-medium topic">
           General
         </span>
 
-        <span class="px-5 py-2 rounded-xl bg-indigo-100 text-indigo-600 topic">
+        <span class="px-5 py-3 rounded-2xl bg-indigo-100 text-indigo-600 font-medium topic">
           Design
         </span>
 
-        <span class="px-5 py-2 rounded-xl bg-gray-200 text-gray-700 topic">
+        <span class="px-5 py-3 rounded-2xl bg-gray-100 text-gray-700 font-medium topic">
           Development
         </span>
 
-        <span class="px-5 py-2 rounded-xl bg-gray-200 text-gray-700 topic">
+        <span class="px-5 py-3 rounded-2xl bg-gray-100 text-gray-700 font-medium topic">
           Marketing
         </span>
 
-        <span class="px-5 py-2 rounded-xl bg-gray-200 text-gray-700 topic">
+        <span class="px-5 py-3 rounded-2xl bg-gray-100 text-gray-700 font-medium topic">
           Data Science
         </span>
 
-        <span class="px-5 py-2 rounded-xl bg-gray-200 text-gray-700 topic">
+        <span class="px-5 py-3 rounded-2xl bg-gray-100 text-gray-700 font-medium topic">
           +10 More
         </span>
 
@@ -258,15 +268,15 @@
 
     <!-- ================= MAIN GRID ================= -->
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
 
       <!-- ================= POSTS ================= -->
 
-      <div class="lg:col-span-8 space-y-8">
+      <div class="xl:col-span-8 space-y-6">
 
         <!-- POST 1 -->
 
-        <div class="bg-white rounded-3xl p-6 shadow-sm post-card">
+        <div class="bg-white rounded-2xl p-6 shadow-sm post-card">
 
           <!-- USER -->
 
@@ -274,7 +284,7 @@
 
             <img
               src="https://i.pravatar.cc/50?img=1"
-              class="w-12 h-12 rounded-full"
+              class="w-12 h-12 rounded-full object-cover"
             >
 
             <div>
@@ -293,45 +303,51 @@
 
           <!-- CONTENT -->
 
-          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-3">
             Feedback on my mobile app design!
           </h2>
 
-          <p class="text-gray-500 mb-5">
+          <p class="text-gray-500 leading-relaxed mb-5">
             I recently redesigned my onboarding screens and would love
             feedback from the community.
           </p>
 
           <!-- IMAGES -->
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
 
             <img
               src="https://picsum.photos/500/300?1"
-              class="rounded-2xl object-cover w-full h-56"
+              class="rounded-2xl object-cover w-full h-64"
             >
 
             <img
               src="https://picsum.photos/500/300?2"
-              class="rounded-2xl object-cover w-full h-56"
+              class="rounded-2xl object-cover w-full h-64"
             >
 
           </div>
 
           <!-- ACTIONS -->
 
-          <div class="flex items-center justify-between text-gray-500 text-sm">
+          <div class="flex items-center justify-between">
 
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-6 text-sm text-gray-500">
 
-              <span>❤️ 30 Likes</span>
+              <span class="cursor-pointer hover:text-blue-500 transition">
+                ❤️ 30 Likes
+              </span>
 
-              <span>💬 6 Comments</span>
+              <span class="cursor-pointer hover:text-blue-500 transition">
+                💬 6 Comments
+              </span>
 
             </div>
 
-            <button class="text-blue-500 font-medium">
+            <button class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-xl text-sm action-btn">
+
               Comment
+
             </button>
 
           </div>
@@ -340,7 +356,7 @@
 
         <!-- POST 2 -->
 
-        <div class="bg-white rounded-3xl p-6 shadow-sm post-card">
+        <div class="bg-white rounded-2xl p-6 shadow-sm post-card">
 
           <!-- USER -->
 
@@ -348,7 +364,7 @@
 
             <img
               src="https://i.pravatar.cc/50?img=2"
-              class="w-12 h-12 rounded-full"
+              class="w-12 h-12 rounded-full object-cover"
             >
 
             <div>
@@ -367,45 +383,51 @@
 
           <!-- CONTENT -->
 
-          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-3">
             Any tips for optimizing Python code?
           </h2>
 
-          <p class="text-gray-500 mb-5">
+          <p class="text-gray-500 leading-relaxed mb-5">
             My program works correctly but becomes slow with larger datasets.
             Looking for performance improvement suggestions.
           </p>
 
           <!-- IMAGES -->
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5">
 
             <img
               src="https://picsum.photos/500/300?3"
-              class="rounded-2xl object-cover w-full h-56"
+              class="rounded-2xl object-cover w-full h-64"
             >
 
             <img
               src="https://picsum.photos/500/300?4"
-              class="rounded-2xl object-cover w-full h-56"
+              class="rounded-2xl object-cover w-full h-64"
             >
 
           </div>
 
           <!-- ACTIONS -->
 
-          <div class="flex items-center justify-between text-gray-500 text-sm">
+          <div class="flex items-center justify-between">
 
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-6 text-sm text-gray-500">
 
-              <span>❤️ 18 Likes</span>
+              <span class="cursor-pointer hover:text-blue-500 transition">
+                ❤️ 18 Likes
+              </span>
 
-              <span>💬 12 Comments</span>
+              <span class="cursor-pointer hover:text-blue-500 transition">
+                💬 12 Comments
+              </span>
 
             </div>
 
-            <button class="text-blue-500 font-medium">
+            <button class="bg-blue-500 hover:bg-blue-600 text-white px-5 py-2 rounded-xl text-sm action-btn">
+
               Comment
+
             </button>
 
           </div>
@@ -416,11 +438,11 @@
 
       <!-- ================= SIDEBAR ================= -->
 
-      <div class="lg:col-span-4 space-y-8">
+      <div class="xl:col-span-4 space-y-6">
 
         <!-- TOP CONTRIBUTORS -->
 
-        <div class="bg-white rounded-3xl p-6 shadow-sm sidebar-card">
+        <div class="bg-white rounded-2xl shadow-sm p-6 sidebar-card">
 
           <h2 class="text-xl font-semibold text-gray-800 mb-6">
             Top Contributors
@@ -432,12 +454,12 @@
 
               <img
                 src="https://i.pravatar.cc/45?img=3"
-                class="rounded-full"
+                class="w-12 h-12 rounded-full object-cover"
               >
 
               <div>
 
-                <h4 class="font-medium">
+                <h4 class="font-semibold text-gray-800">
                   Neil K.
                 </h4>
 
@@ -453,12 +475,12 @@
 
               <img
                 src="https://i.pravatar.cc/45?img=4"
-                class="rounded-full"
+                class="w-12 h-12 rounded-full object-cover"
               >
 
               <div>
 
-                <h4 class="font-medium">
+                <h4 class="font-semibold text-gray-800">
                   Sarah J.
                 </h4>
 
@@ -474,12 +496,12 @@
 
               <img
                 src="https://i.pravatar.cc/45?img=5"
-                class="rounded-full"
+                class="w-12 h-12 rounded-full object-cover"
               >
 
               <div>
 
-                <h4 class="font-medium">
+                <h4 class="font-semibold text-gray-800">
                   Alex
                 </h4>
 
@@ -495,12 +517,12 @@
 
               <img
                 src="https://i.pravatar.cc/45?img=6"
-                class="rounded-full"
+                class="w-12 h-12 rounded-full object-cover"
               >
 
               <div>
 
-                <h4 class="font-medium">
+                <h4 class="font-semibold text-gray-800">
                   Michael T.
                 </h4>
 
@@ -518,7 +540,7 @@
 
         <!-- GROUPS -->
 
-        <div class="bg-white rounded-3xl p-6 shadow-sm sidebar-card">
+        <div class="bg-white rounded-2xl shadow-sm p-6 sidebar-card">
 
           <h2 class="text-xl font-semibold text-gray-800 mb-6">
             Suggested Groups
@@ -526,9 +548,9 @@
 
           <div class="space-y-4">
 
-            <div class="bg-blue-500 text-white p-4 rounded-2xl cursor-pointer hover:scale-[1.02] transition">
+            <div class="bg-blue-500 text-white p-5 rounded-2xl cursor-pointer hover:scale-[1.02] transition">
 
-              <h4 class="font-semibold">
+              <h4 class="font-semibold mb-1">
                 UI/UX Designers
               </h4>
 
@@ -538,9 +560,9 @@
 
             </div>
 
-            <div class="bg-gray-100 p-4 rounded-2xl cursor-pointer hover:bg-gray-200 transition">
+            <div class="bg-gray-100 p-5 rounded-2xl cursor-pointer hover:bg-gray-200 transition">
 
-              <h4 class="font-semibold text-gray-800">
+              <h4 class="font-semibold text-gray-800 mb-1">
                 Web Developers
               </h4>
 
@@ -550,9 +572,9 @@
 
             </div>
 
-            <div class="bg-gray-100 p-4 rounded-2xl cursor-pointer hover:bg-gray-200 transition">
+            <div class="bg-gray-100 p-5 rounded-2xl cursor-pointer hover:bg-gray-200 transition">
 
-              <h4 class="font-semibold text-gray-800">
+              <h4 class="font-semibold text-gray-800 mb-1">
                 Data Science Club
               </h4>
 

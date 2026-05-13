@@ -5,315 +5,166 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Profile Page</title>
 
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <!-- GOOGLE FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Material+Symbols+Outlined" rel="stylesheet">
 
   <style>
 
     *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
       font-family:'Poppins',sans-serif;
     }
 
     body{
-      background:#f4f5f7;
-      color:#333;
+      background:#f3f4f6;
     }
 
-    .container{
-      width:90%;
-      max-width:1300px;
-      margin:auto;
-      padding:20px 0;
-    }
-
-    /* ================= NAVBAR ================= */
-
-    .navbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background:#fff;
-      padding:15px 25px;
-      border-radius:15px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.08);
-      margin-bottom:25px;
-    }
-
-    .nav-left,
-    .nav-right{
-      display:flex;
-      align-items:center;
-      gap:20px;
-    }
-
-    .logo{
-      font-size:24px;
-      font-weight:600;
-      color:#3b82f6;
-      cursor:pointer;
-    }
-
-    .nav-menu{
-      display:flex;
-      gap:20px;
-      margin-left:30px;
-    }
-
-    .nav-item a{
-      text-decoration:none;
-      color:#555;
-      padding:8px 14px;
-      border-radius:8px;
-      transition:0.3s;
-      font-weight:500;
-    }
-
-    .nav-item a:hover{
-      background:#eef2ff;
-      color:#3b82f6;
-    }
-
-    .material-symbols-outlined{
-      font-size:24px;
-      cursor:pointer;
-      color:#555;
-    }
-
-    .profile{
-      width:40px;
-      height:40px;
-      border-radius:50%;
-      background:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400')
-      center/cover;
-      cursor:pointer;
-      position:relative;
-    }
-
-    /* ================= DROPDOWN ================= */
-
-    .dropdown{
-      position:absolute;
-      top:50px;
-      right:0;
-      background:#fff;
-      border-radius:10px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.1);
-      display:none;
-      flex-direction:column;
-      min-width:140px;
-      overflow:hidden;
-    }
-
-    .dropdown div{
-      padding:12px;
-      cursor:pointer;
+    .nav-link{
       transition:0.3s;
     }
 
-    .dropdown div:hover{
-      background:#f1f5f9;
+    .nav-link:hover{
+      color:#2563eb;
     }
 
-    /* ================= HERO SECTION ================= */
-
-    .hero{
-      background:linear-gradient(to right,#efe3ff,#dff5ff);
-      border-radius:20px;
-      padding:40px;
-      display:flex;
-      align-items:center;
-      gap:30px;
-      margin-bottom:30px;
-      position:relative;
-      overflow:hidden;
+    .profile-card{
+      transition:0.3s ease;
     }
 
-    .hero::before{
-      content:'';
-      position:absolute;
-      width:140px;
-      height:140px;
-      background:#3ca8ff;
-      border-radius:50%;
-      left:-70px;
-      bottom:-70px;
+    .profile-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 12px 25px rgba(0,0,0,0.08);
     }
 
-    .hero::after{
-      content:'';
-      position:absolute;
-      width:120px;
-      height:120px;
-      background:#ff1493;
-      border-radius:50%;
-      right:-60px;
-      bottom:-60px;
+    .stat-card{
+      transition:0.3s ease;
     }
 
-    .profile-image-wrapper{
-      width:170px;
-      height:170px;
-      border-radius:50%;
-      padding:8px;
-      background:linear-gradient(135deg,#5d8bff,#ff2fa3);
-      z-index:2;
+    .stat-card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 12px 25px rgba(0,0,0,0.08);
     }
 
-    .profile-image{
-      width:100%;
-      height:100%;
-      border-radius:50%;
-      overflow:hidden;
-      border:6px solid white;
-    }
-
-    .profile-image img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-    }
-
-    .profile-content{
-      z-index:2;
-    }
-
-    .profile-content h1{
-      font-size:50px;
-      margin-bottom:10px;
-    }
-
-    .profile-content p{
-      color:#666;
-      line-height:1.7;
-      margin-bottom:20px;
-    }
-
-    /* ================= STATS ================= */
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:20px;
-      margin-top:30px;
-    }
-
-    .card{
-      background:#fff;
-      padding:25px;
-      border-radius:15px;
-      text-align:center;
-      box-shadow:0 8px 20px rgba(0,0,0,0.05);
+    .action-btn{
       transition:0.3s;
     }
 
-    .card:hover{
-      transform:translateY(-5px);
-    }
-
-    .card h2{
-      font-size:40px;
-      margin-bottom:10px;
-    }
-
-    .card p{
-      color:#666;
-      font-size:14px;
-    }
-
-    @media(max-width:1000px){
-
-      .stats{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-    }
-
-    @media(max-width:768px){
-
-      .navbar{
-        flex-direction:column;
-        gap:15px;
-      }
-
-      .nav-menu{
-        margin-left:0;
-        flex-wrap:wrap;
-        justify-content:center;
-      }
-
-      .hero{
-        flex-direction:column;
-        text-align:center;
-      }
-
-      .stats{
-        grid-template-columns:1fr;
-      }
-
+    .action-btn:hover{
+      transform:scale(1.03);
     }
 
   </style>
+
 </head>
 
 <body>
 
-  <div class="container">
+  <!-- ================= MAIN CONTAINER ================= -->
+
+  <div class="w-[95%] max-w-[1600px] mx-auto py-6">
 
     <!-- ================= NAVBAR ================= -->
 
-    <div class="navbar">
+    <div class="bg-white shadow-md rounded-2xl px-6 py-4 flex justify-between items-center mb-8">
 
-      <div class="nav-left">
+      <!-- LEFT -->
 
-        <div class="logo">
+      <div class="flex items-center gap-10">
+
+        <!-- LOGO -->
+
+        <div
+          class="text-2xl font-semibold text-blue-500 cursor-pointer"
+          onclick="window.location.href='dashboard.html'">
+
           EduLearn
+
         </div>
 
-        <div class="nav-menu">
+        <!-- MENU -->
 
-          <div class="nav-item">
-            <a href="dashboard.html">Home</a>
-          </div>
+        <div class="hidden md:flex gap-8 text-gray-600 font-medium">
 
-          <div class="nav-item">
-            <a href="courses.html">Courses</a>
-          </div>
+          <span
+            class="cursor-pointer nav-link"
+            onclick="window.location.href='dashboard.html'">
 
-          <div class="nav-item">
-            <a href="community.html">Community</a>
-          </div>
+            Home
 
-          <div class="nav-item">
-            <a href="profile.html">Profile</a>
-          </div>
+          </span>
+
+          <span
+            class="cursor-pointer nav-link"
+            onclick="window.location.href='courses.html'">
+
+            Courses
+
+          </span>
+
+          <span
+            class="cursor-pointer nav-link"
+            onclick="window.location.href='community.html'">
+
+            Community
+
+          </span>
+
+          <span class="cursor-pointer text-blue-500">
+            Profile
+          </span>
 
         </div>
 
       </div>
 
-      <div class="nav-right">
+      <!-- RIGHT -->
 
-        <span class="material-symbols-outlined">
+      <div class="flex items-center gap-5">
+
+        <span class="material-symbols-outlined cursor-pointer text-gray-600 hover:text-blue-500">
           notifications
         </span>
 
-        <span class="material-symbols-outlined">
+        <span class="material-symbols-outlined cursor-pointer text-gray-600 hover:text-blue-500">
           chat
         </span>
 
-        <div class="profile" onclick="toggleDropdown()">
+        <!-- PROFILE -->
 
-          <div class="dropdown" id="dropdown">
+        <div class="relative">
 
-            <div>
+          <div
+            onclick="toggleDropdown()"
+            class="w-10 h-10 rounded-full bg-gray-300 cursor-pointer overflow-hidden">
+
+            <img
+              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400"
+              class="w-full h-full object-cover"
+            >
+
+          </div>
+
+          <!-- DROPDOWN -->
+
+          <div
+            id="dropdown"
+            class="hidden absolute right-0 mt-3 bg-white shadow-lg rounded-xl w-36 overflow-hidden z-50">
+
+            <div
+              class="p-3 hover:bg-gray-100 cursor-pointer">
+
               My Profile
+
             </div>
 
-            <div onclick="logout()">
+            <div
+              onclick="logout()"
+              class="p-3 hover:bg-gray-100 cursor-pointer">
+
               Logout
+
             </div>
 
           </div>
@@ -326,24 +177,90 @@
 
     <!-- ================= PROFILE HERO ================= -->
 
-    <section class="hero">
+    <section class="bg-white rounded-2xl shadow-sm p-8 md:p-10 mb-8 profile-card overflow-hidden relative">
 
-      <div class="profile-image-wrapper">
+      <!-- BACKGROUND DECORATION -->
 
-        <div class="profile-image">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800" alt="">
+      <div class="absolute top-0 right-0 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+
+      <div class="absolute bottom-0 left-0 w-72 h-72 bg-indigo-100 rounded-full blur-3xl opacity-40"></div>
+
+      <div class="relative z-10 flex flex-col xl:flex-row xl:items-center xl:justify-between gap-10">
+
+        <!-- LEFT SECTION -->
+
+        <div class="flex flex-col md:flex-row md:items-center gap-8">
+
+          <!-- PROFILE IMAGE -->
+
+          <div class="relative">
+
+            <div class="w-44 h-44 rounded-full bg-gradient-to-br from-blue-500 to-indigo-500 p-2 shadow-lg">
+
+              <div class="w-full h-full rounded-full overflow-hidden border-[6px] border-white">
+
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800"
+                  class="w-full h-full object-cover"
+                >
+
+              </div>
+
+            </div>
+
+            <!-- ONLINE STATUS -->
+
+            <div class="absolute bottom-4 right-4 w-5 h-5 rounded-full bg-green-500 border-4 border-white"></div>
+
+          </div>
+
+          <!-- PROFILE CONTENT -->
+
+          <div>
+
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+
+              <h1 class="text-4xl md:text-5xl font-bold text-gray-800">
+                John Doe
+              </h1>
+
+              <span class="bg-blue-100 text-blue-600 px-4 py-2 rounded-xl text-sm font-medium">
+
+                Premium Member
+
+              </span>
+
+            </div>
+
+            <p class="text-gray-500 leading-relaxed max-w-2xl text-base md:text-lg mb-6">
+
+              You have 2 incomplete assignments nearing their due date.
+              Complete them soon to improve your performance and maintain
+              your learning streak on EduLearn.
+
+            </p>
+
+            <!-- ACTIONS -->
+
+            <div class="flex flex-wrap gap-4">
+
+              <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-2xl shadow-sm action-btn">
+
+                Edit Profile
+
+              </button>
+
+              <button class="bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 px-6 py-3 rounded-2xl shadow-sm action-btn">
+
+                Share Profile
+
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
-
-      </div>
-
-      <div class="profile-content">
-
-        <h1>John Doe</h1>
-
-        <p>
-          You have 2 incomplete assignments nearing their due date.
-          Complete them soon to improve your performance.
-        </p>
 
       </div>
 
@@ -351,26 +268,308 @@
 
     <!-- ================= STATS ================= -->
 
-    <section class="stats">
+    <section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
 
-      <div class="card">
-        <h2>12</h2>
-        <p>Assignments Completed</p>
+      <!-- CARD 1 -->
+
+      <div class="bg-white rounded-2xl shadow-sm p-7 stat-card">
+
+        <div class="flex items-center justify-between mb-6">
+
+          <div class="w-14 h-14 rounded-2xl bg-blue-100 flex items-center justify-center">
+
+            <span class="material-symbols-outlined text-blue-500 text-3xl">
+              task_alt
+            </span>
+
+          </div>
+
+          <span class="text-sm text-green-500 font-medium">
+            +12%
+          </span>
+
+        </div>
+
+        <h2 class="text-4xl font-bold text-gray-800 mb-2">
+          12
+        </h2>
+
+        <p class="text-gray-500">
+          Assignments Completed
+        </p>
+
       </div>
 
-      <div class="card">
-        <h2>75%</h2>
-        <p>Assignments Completed</p>
+      <!-- CARD 2 -->
+
+      <div class="bg-white rounded-2xl shadow-sm p-7 stat-card">
+
+        <div class="flex items-center justify-between mb-6">
+
+          <div class="w-14 h-14 rounded-2xl bg-indigo-100 flex items-center justify-center">
+
+            <span class="material-symbols-outlined text-indigo-500 text-3xl">
+              school
+            </span>
+
+          </div>
+
+          <span class="text-sm text-green-500 font-medium">
+            +8%
+          </span>
+
+        </div>
+
+        <h2 class="text-4xl font-bold text-gray-800 mb-2">
+          75%
+        </h2>
+
+        <p class="text-gray-500">
+          Course Completion
+        </p>
+
       </div>
 
-      <div class="card">
-        <h2>50%</h2>
-        <p>Assignments Mastered</p>
+      <!-- CARD 3 -->
+
+      <div class="bg-white rounded-2xl shadow-sm p-7 stat-card">
+
+        <div class="flex items-center justify-between mb-6">
+
+          <div class="w-14 h-14 rounded-2xl bg-pink-100 flex items-center justify-center">
+
+            <span class="material-symbols-outlined text-pink-500 text-3xl">
+              workspace_premium
+            </span>
+
+          </div>
+
+          <span class="text-sm text-green-500 font-medium">
+            +5%
+          </span>
+
+        </div>
+
+        <h2 class="text-4xl font-bold text-gray-800 mb-2">
+          50%
+        </h2>
+
+        <p class="text-gray-500">
+          Assignments Mastered
+        </p>
+
       </div>
 
-      <div class="card">
-        <h2>100</h2>
-        <p>Performance Score</p>
+      <!-- CARD 4 -->
+
+      <div class="bg-white rounded-2xl shadow-sm p-7 stat-card">
+
+        <div class="flex items-center justify-between mb-6">
+
+          <div class="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center">
+
+            <span class="material-symbols-outlined text-green-500 text-3xl">
+              monitoring
+            </span>
+
+          </div>
+
+          <span class="text-sm text-green-500 font-medium">
+            +20%
+          </span>
+
+        </div>
+
+        <h2 class="text-4xl font-bold text-gray-800 mb-2">
+          100
+        </h2>
+
+        <p class="text-gray-500">
+          Performance Score
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- ================= EXTRA SECTION ================= -->
+
+    <section class="grid grid-cols-1 xl:grid-cols-3 gap-6">
+
+      <!-- RECENT ACTIVITY -->
+
+      <div class="xl:col-span-2 bg-white rounded-2xl shadow-sm p-7 profile-card">
+
+        <div class="flex items-center justify-between mb-8">
+
+          <div>
+
+            <h2 class="text-2xl font-semibold text-gray-800 mb-2">
+              Recent Activity
+            </h2>
+
+            <p class="text-gray-500">
+              Your latest learning progress and achievements.
+            </p>
+
+          </div>
+
+          <button class="text-blue-500 font-medium nav-link">
+            View All
+          </button>
+
+        </div>
+
+        <div class="space-y-6">
+
+          <!-- ACTIVITY 1 -->
+
+          <div class="flex items-start gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-blue-100 flex items-center justify-center flex-shrink-0">
+
+              <span class="material-symbols-outlined text-blue-500">
+                play_circle
+              </span>
+
+            </div>
+
+            <div class="flex-1">
+
+              <h3 class="font-semibold text-gray-800 mb-1">
+                Continued Java Backend Development Course
+              </h3>
+
+              <p class="text-gray-500 text-sm mb-3">
+                Completed lesson 8: Spring Boot REST APIs
+              </p>
+
+              <div class="w-full h-2 bg-gray-200 rounded-full">
+
+                <div class="w-[70%] h-2 bg-blue-500 rounded-full"></div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- ACTIVITY 2 -->
+
+          <div class="flex items-start gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-green-100 flex items-center justify-center flex-shrink-0">
+
+              <span class="material-symbols-outlined text-green-500">
+                emoji_events
+              </span>
+
+            </div>
+
+            <div>
+
+              <h3 class="font-semibold text-gray-800 mb-1">
+                Achievement Unlocked
+              </h3>
+
+              <p class="text-gray-500 text-sm">
+                You completed 10 assignments successfully.
+              </p>
+
+            </div>
+
+          </div>
+
+          <!-- ACTIVITY 3 -->
+
+          <div class="flex items-start gap-4">
+
+            <div class="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center flex-shrink-0">
+
+              <span class="material-symbols-outlined text-pink-500">
+                groups
+              </span>
+
+            </div>
+
+            <div>
+
+              <h3 class="font-semibold text-gray-800 mb-1">
+                Joined Community Discussion
+              </h3>
+
+              <p class="text-gray-500 text-sm">
+                Participated in UI/UX Design Feedback thread.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- PROFILE SUMMARY -->
+
+      <div class="bg-white rounded-2xl shadow-sm p-7 profile-card">
+
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6">
+          Profile Summary
+        </h2>
+
+        <div class="space-y-5">
+
+          <div>
+
+            <p class="text-sm text-gray-400 mb-1">
+              Email
+            </p>
+
+            <h4 class="font-medium text-gray-700">
+              johndoe@gmail.com
+            </h4>
+
+          </div>
+
+          <div>
+
+            <p class="text-sm text-gray-400 mb-1">
+              Learning Path
+            </p>
+
+            <h4 class="font-medium text-gray-700">
+              Full Stack Development
+            </h4>
+
+          </div>
+
+          <div>
+
+            <p class="text-sm text-gray-400 mb-1">
+              Joined
+            </p>
+
+            <h4 class="font-medium text-gray-700">
+              January 2026
+            </h4>
+
+          </div>
+
+          <div>
+
+            <p class="text-sm text-gray-400 mb-1">
+              Current Streak
+            </p>
+
+            <h4 class="font-medium text-gray-700">
+              18 Days
+            </h4>
+
+          </div>
+
+        </div>
+
       </div>
 
     </section>
@@ -381,12 +580,11 @@
 
     function toggleDropdown(){
 
-      const dropdown = document.getElementById('dropdown');
+      const dropdown =
+        document.getElementById('dropdown');
 
-      dropdown.style.display =
-      dropdown.style.display === 'flex'
-      ? 'none'
-      : 'flex';
+      dropdown.classList.toggle('hidden');
+
     }
 
     function logout(){
@@ -394,19 +592,23 @@
       localStorage.clear();
 
       window.location.href = "index.html";
+
     }
 
-    // Close dropdown
+    // CLOSE DROPDOWN
 
     window.addEventListener('click', function(e){
 
-      const profile = document.querySelector('.profile');
+      const profile =
+        document.querySelector('.relative');
 
-      const dropdown = document.getElementById('dropdown');
+      const dropdown =
+        document.getElementById('dropdown');
 
       if(!profile.contains(e.target)){
 
-        dropdown.style.display = 'none';
+        dropdown.classList.add('hidden');
+
       }
 
     });
